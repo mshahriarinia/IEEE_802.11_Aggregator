@@ -1,0 +1,26 @@
+physical
+
+http://mailman.isi.edu/pipermail/ns-users/2007-July/060671.html
+#To have 240m,using freespace
+set opt(prop)           Propagation/FreeSpace   ;# radio-propagation model
+#(...)
+Antenna/OmniAntenna set X_ 0
+Antenna/OmniAntenna set Y_ 0
+Antenna/OmniAntenna set Z_ 1.5
+Antenna/OmniAntenna set Gt_ 1.0  ;#be aware the Gt_ and Gr_ are setted as the
+Antenna/OmniAntenna set Gr_ 1.0  ;#fixed value 1.0
+Phy/WirelessPhy set freq_ 2.4e9
+Phy/WirelessPhy set L_ 1.0
+Phy/WirelessPhy set Pt_ 1.838e-5  ;#power needed to have 240m of distance
+Phy/WirelessPhy set RXThresh_ 3.16e-14
+Phy/WirelessPhy set CSThresh_ 3.16e-14   ;#Sensivity=-105 dbm
+Phy/WirelessPhy set CPThresh_ 10
+
+output:highestAntennaZ_ = 1.5,  distCST_ = 239.9
+
+To increase distance higher than that increase Phy/WirelessPhy set Pt_ ,
+distCST_ will go above 240m.
+
+
+
+
