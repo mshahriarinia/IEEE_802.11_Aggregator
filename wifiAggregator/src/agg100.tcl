@@ -1,19 +1,11 @@
-# ===================================================
-# Author: Morteza Shahriari Nia 01/21/2013
-# This is a network of 100 nodes which operate at 802.11 
-# and have one node as base station to which everybody tranmists.
-# We want to analyze that as the number of the nodes 
-# increases and as the packet length become smaller
-# utilization decreases dramatically and nodes spend most 
-# of their time contending to gain resources.
-# ==================================================
-
-# CBR: Constant bit rate generator
-set cbr_size 500     
+#http://ns2-master.blogspot.com/2011/04/sample-coding-in-wireless.html
+#http://cromagnonlife.wordpress.com/2010/08/08/solution-ns2-segmentation-fault-core-dumped-when-using-dsr/
+#Define options
+set cbr_size 500 ; # CBR: Constant bit rate generator
 set cbr_interval 0.002
-set num_row 10
-set time_duration 100
-#set land_size 1000 #land side length
+set num_row 5
+set start 1
+
 set val(chan) Channel/WirelessChannel ;# channel type
 set val(prop) Propagation/TwoRayGround ;# radio-propagation model
 set val(netif) Phy/WirelessPhy ;# network interface type
@@ -22,26 +14,38 @@ set val(ifq) Queue/DropTail/PriQueue ;# interface queue type
 set val(ll) LL ;# link layer type
 set val(ant) Antenna/OmniAntenna ;# antenna model
 set val(ifqlen) 50 ;# max packet in ifq
-set val(rp) DSDV ;# routing protocol
+set val(rp) DSR ;# routing protocol or DSDV
+set val(x) 500 ;# X dimension of topography
+set val(y) 500 ;# Y dimension of topography
+set val(stop) 10 ;# time of simulation end
+
+if { $val(rp) == "DSR" } {
+    set val(ifq)            CMUPriQueue
+} else {
+    set val(ifq)            Queue/DropTail/PriQueue
+}
 
 # Initialize ns
-set ns_ [new Simulator]
-set tracefd [open simple.tr w]
-$ns_ trace-all $tracefd
+set ns [new Simulator]
+set tracefd [open agg100.tr w]
+set namtrace [open agg100.nam w]
+ ns-version
+
+$ns trace-all $tracefd
+$ns namtrace-all-wireless $namtrace $val(x) $val(y)
 
 ################################## NAM
-
 #Define different colors for data flows (for NAM)
-#$ns_ color 1 Blue
+#$ns color 1 Blue
 
 #Open the NAM trace file
 #set nf [open outAgg.nam w]
-#$ns_ namtrace-all $nf
+#$ns namtrace-all $nf
 
 #Define a 'finish' procedure
 #proc finish {} {
 #        global ns nf
-#        $ns_ flush-trace
+#        $ns flush-trace
 #        #Close the NAM trace file
 #        close $nf
 #        #Execute NAM on the trace file
@@ -52,77 +56,116 @@ $ns_ trace-all $tracefd
 
 # set up topography object
 set topo       [new Topography]
-$topo load_flatgrid 10 10
+
+$topo load_flatgrid $val(x) $val(y)
+
 create-god [expr $num_row * $num_row ]
-$ns_ node-config -adhocRouting $val(rp)\
+
+
+
+
+#Configure nodes
+$ns node-config -adhocRouting $val(rp)\
      -llType $val(ll) \
-     -macType $val(mac)  -ifqType $val(ifq) \
-     -ifqLen $val(ifqlen) -antType $val(ant) \
-     -propType $val(prop) -phyType $val(netif) \
-     -channel  [new $val(chan)] -topoInstance $topo \
-     -agentTrace OFF -routerTrace OFF\
+     -macType $val(mac) \
+     -ifqType $val(ifq) \
+     -ifqLen $val(ifqlen) \
+     -antType $val(ant) \
+     -propType $val(prop) \
+     -phyType $val(netif) \
+     -channel  [new $val(chan)] \
+     -topoInstance $topo \
+     -agentTrace ON \
+     -routerTrace ON\
      -macTrace ON \
-     -movementTrace OFF
+     -movementTrace ON
+
+
 # CREATE 4*4 NODES
 for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
-    set node_($i) [$ns_ node]
+    set node($i) [$ns node]
 }
-#ASSIGN COORDINATES
+
+#SET COORDINATES
 set k 0;
 while {$k < $num_row } {
     for {set i 0} {$i < $num_row } {incr i} {
-set m [expr $i+$k*$num_row];
-$node_($m) set X_ [expr $i*10];
-$node_($m) set Y_ [expr $k*10+10.0];
-$node_($m) set Z_ 0.0
+	set m [expr $i+$k*$num_row];
+	set xpos [expr $i*100];
+	set ypos [expr $k*100];
+        puts "m is $m, ($xpos $ypos)"	
+
+	$node($m) set X_ $xpos
+	$node($m) set Y_ $ypos
+	$node($m) set Z_ 0.0
     }
     incr k;
 }; 
 
+
+
+
+##########################  PACKETS
+
 #CREATE 4 UDP SENDERS AND 1 NULL RECEIVERS (FOR UDP)
-for {set i 0} {$i < [expr $num_row*$num_row] } {incr i} {
+#ATTACH PROTOCOLS TO NODES (SENDERS)
+for {set i 1} {$i < [expr $num_row*$num_row] } {incr i} {
     set udp_($i) [new Agent/UDP]    
+    $ns attach-agent $node($i) $udp_($i) 
 } 
+
 #ONLY ONE RECEIVER (BASE STATION)
 set null_(0) [new Agent/Null]
-#ATTACH PROTOCOLS TO NODES (SENDERS)
-for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
-$ns_ attach-agent $node_($i) $udp_($i)
-}
-
 #set baseIndex  [expr $num_row * $num_row / 2 - 1]
-#ONLY ONE BASE STATION
-$ns_ attach-agent $node_(50) $null_(0)
+$ns attach-agent $node(0) $null_(0)
+
 # CREATE THE ACTUAL FLOW
-for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
-     $ns_ connect $udp_($i) $null_(0)
+for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
+     $ns connect $udp_($i) $null_(0)
 }
 #CREATE 4 CBRs  
-for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
+for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
     set cbr_($i) [new Application/Traffic/CBR]
-    $cbr_($i) set packetSize_ $cbr_size #PACKET SIZE
-    $cbr_($i) set interval_ 0.5     #BURST INTERVAL
+    $cbr_($i) set packetSize_ $cbr_size; #PACKET SIZE
+    $cbr_($i) set interval_ 0.5 ;    #BURST INTERVAL
     $cbr_($i) set rate_ 1mb
     $cbr_($i) attach-agent $udp_($i) 
-    $ns_ at [expr 11.0234 + 0.005] "$cbr_($i) start"
+    $ns at $start "$cbr_($i) start"; #START PACKET GENERATION
 } 
-#START PACKET GENERATION
-#$ns_ at 11.0234 "$cbr_(0) start"
-#$ns_ at 10.4578 "$cbr_(1) start" 
-#$ns_ at 12.7184 "$cbr_(2) start"
-#$ns_ at 12.2456 "$cbr_(3) start" 
+
+
+
+##########################  PACKETS
+
+# Define node initial position in nam
+for {set i 0} {$i < [expr $num_row*$num_row]} { incr i } {
+	# defines the node circle size for nam display
+	$ns initial_node_pos $node($i) 10
+}
+
+
 #TERMINATE THE SIMULATOR
 # Tell nodes when the simulation ends
 for {set i 0} {$i < [expr $num_row*$num_row] } {incr i} {
-    $ns_ at [expr $time_duration +10.0] "$node_($i) reset";
+    $ns at  $val(stop) "$node($i) reset";
 }
-$ns at 5.0 "finish"
-#$ns_ at [expr $time_duration +10.0] "finish"
-$ns_ at [expr $time_duration +10.01] "puts \"NS Exiting...\"; $ns_ halt"
-proc finish {} {
-global ns_ tracefd
-$ns_ flush-trace
+$ns at $val(stop) "$ns nam-end-wireless $val(stop)"
+$ns at $val(stop) "stop"
+#$ns at [expr $time_duration +10.0] "finish"
+$ns at [expr  $val(stop) + 0.01] "puts \"NS Exiting...End Simulation\"; $ns halt"
+#proc finish {} {
+#global ns_ tracefd
+#$ns flush-trace
+#close $tracefd
+#}
+proc stop {} {
+global ns tracefd namtrace
+$ns flush-trace
 close $tracefd
+close $namtrace
+#exec nam agg100.nam &
 }
+
+
 puts "Starting Simulation..."
-$ns_ run 
+$ns run 

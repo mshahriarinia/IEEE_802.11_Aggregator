@@ -93,7 +93,7 @@ $ns_ attach-agent $node_($i) $udp_($i)
 set baseIndex  [expr $num_row * $num_row / 2 - 1]
 #ONLY ONE BASE STATION
 #$ns_ attach-agent $node_($baseIndex ) $null_(0)
-$ns_ attach-agent $node_(3 ) $null_(0)
+$ns_ attach-agent $node_(3 ) $null_(0)       #set base station index
 # CREATE THE ACTUAL FLOW
 for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
      $ns_ connect $udp_($i) $null_(0)
