@@ -1,3 +1,5 @@
+text with equal signs becomes heading
+========================
 # Wifi Packet Aggregator in NS-2
 
 ##Description
@@ -7,7 +9,7 @@ This project will determine the effect of traffic aggregation on **IEEE 802.11**
 
 ###Test bulleted readme in github.
 
-* auto escape: if enabled (default) this will escape all variables in the template output.
+* auto escape: if enabled (default) this *italic text stored like this*  in the template output.
 * auto reload: if enabled (default) this will only regenerate the cached template if the source file has changed.
 * cache: the location where to place the cached templates.
 
