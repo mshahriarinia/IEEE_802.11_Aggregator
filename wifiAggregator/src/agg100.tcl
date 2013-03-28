@@ -3,7 +3,7 @@
 #Define options
 set cbr_size 500 ; # CBR: Constant bit rate generator
 set cbr_interval 0.002
-set num_row 5
+set num_row 2
 set start 1
 
 set val(chan) Channel/WirelessChannel ;# channel type
@@ -17,7 +17,7 @@ set val(ifqlen) 50 ;# max packet in ifq
 set val(rp) DSR ;# routing protocol or DSDV
 set val(x) 500 ;# X dimension of topography
 set val(y) 500 ;# Y dimension of topography
-set val(stop) 10 ;# time of simulation end
+set val(stop) 5 ;# time of simulation end
 
 if { $val(rp) == "DSR" } {
     set val(ifq)            CMUPriQueue
@@ -81,10 +81,28 @@ $ns node-config -adhocRouting $val(rp)\
      -movementTrace ON
 
 
+
+
 # CREATE 4*4 NODES
-for {set i 0} {$i < [expr $num_row*$num_row]} {incr i} {
+for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
     set node($i) [$ns node]
 }
+
+#Phy/WirelessPhy set CPThresh_ 10.0
+Phy/WirelessPhy set CSThresh_ 2.78831e-9    ;#100m
+ Phy/WirelessPhy set RXThresh_ 1.11532e-8    ;#50m
+# Phy/WirelessPhy set bandwidth_ 1Mb
+Phy/WirelessPhy set Pt_ 8.5872e-5; # 40 meters
+#Phy/WirelessPhy set freq_ 2.4e+9
+#Phy/WirelessPhy set L_ 1.0
+#Antenna/OmniAntenna set X_ 0
+#Antenna/OmniAntenna set Y_ 0
+#Antenna/OmniAntenna set Z_ 0.25
+#Antenna/OmniAntenna set Gt_ 1
+#Antenna/OmniAntenna set Gr_ 1
+
+    set node(0) [$ns node]
+
 
 #SET COORDINATES
 set k 0;
@@ -119,7 +137,7 @@ set null_(0) [new Agent/Null]
 #set baseIndex  [expr $num_row * $num_row / 2 - 1]
 $ns attach-agent $node(0) $null_(0)
 
-# CREATE THE ACTUAL FLOW
+# CREATE THE ACTUAL FLOW, connect flow generator and flow receiver
 for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
      $ns connect $udp_($i) $null_(0)
 }

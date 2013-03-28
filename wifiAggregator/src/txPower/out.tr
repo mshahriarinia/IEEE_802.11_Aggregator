@@ -1,0 +1,35 @@
+Sconfig 0.00000 tap: on snoop: rts? on errs? on
+Sconfig 0.00000 salvage: on !bd replies? on
+Sconfig 0.00000 grat error: on grat reply: on
+Sconfig 0.00000 $reply for props: on ring 0 search: on
+Sconfig 0.00000 using MOBICACHE
+s -t 1.000000000 -Hs 0 -Hd -2 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl AGT -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.0 -Id 1.0 -It cbr -Il 512 -If 1 -Ii 0 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+r -t 1.000000000 -Hs 0 -Hd -2 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.0 -Id 1.0 -It cbr -Il 512 -If 1 -Ii 0 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+s -t 1.001231035 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 32 -If 0 -Ii 1 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 1 -Pp 0 -Pn 1 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 1.077259389 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 32 -If 0 -Ii 3 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 2 -Pp 0 -Pn 2 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 3.042484240 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 32 -If 0 -Ii 48 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 3 -Pp 0 -Pn 3 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 3.078402203 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 32 -If 0 -Ii 49 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 4 -Pp 0 -Pn 4 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 5.000000000 -Hs 1 -Hd -2 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl AGT -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.1 -Id 0.1 -It cbr -Il 512 -If 2 -Ii 93 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+r -t 5.000000000 -Hs 1 -Hd -2 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.1 -Id 0.1 -It cbr -Il 512 -If 2 -Ii 93 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+s -t 5.005201013 -Hs 1 -Hd -1 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 94 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 1 -Pp 0 -Pn 1 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+r -t 5.006621680 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md ffffffff -Ms 1 -Mt 800 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 94 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 1 -Pp 0 -Pn 1 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 5.009307988 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 96 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 1 -Pp 1 -Pn 1 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+SFESTs 5.059263735 _0_ 0 [0 -> 1] 1(1) to 1 [0 |1 ]
+s -t 5.059263735 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.0 -Id 1.0 -It cbr -Il 548 -If 1 -Ii 0 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+d -t 5.059263735 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl IFQ -Nw ARP -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 96 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 1 -Pp 1 -Pn 1 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 5.084260740 -Hs 1 -Hd -1 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 98 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 2 -Pp 0 -Pn 2 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+r -t 5.085301407 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md ffffffff -Ms 1 -Mt 800 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 98 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 2 -Pp 0 -Pn 2 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 5.088591441 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 99 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 2 -Pp 1 -Pn 2 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+d -t 5.088591441 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl IFQ -Nw ARP -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.0 -Id 1.0 -It cbr -Il 548 -If 1 -Ii 0 -Iv 32 -Pn cbr -Pi 0 -Pf 0 -Po 0 
+s -t 7.018021033 -Hs 1 -Hd -1 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 142 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 3 -Pp 0 -Pn 3 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+r -t 7.019021699 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md ffffffff -Ms 1 -Mt 800 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 142 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 3 -Pp 0 -Pn 3 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 7.022550564 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 143 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 3 -Pp 1 -Pn 3 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+SSendFailure 7.022550564 _0_ 99 37 0:255 1:255 0->1 0 0 0 2 [|0 1 ]
+SSendFailure 7.022550564 _0_ 143 37 0:255 1:255 0->1 0 0 0 2 [|0 1 ]
+s -t 7.066098274 -Hs 1 -Hd -1 -Ni 1 -Nx 200.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 148 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 4 -Pp 0 -Pn 4 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+r -t 7.067298941 -Hs 0 -Hd -1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md ffffffff -Ms 1 -Mt 800 -Is 1.255 -Id 0.255 -It DSR -Il 32 -If 0 -Ii 148 -Iv 32 -P dsr -Ph 1 -Pq 1 -Ps 4 -Pp 0 -Pn 4 -Pl 0 -Pe 0->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 7.074771294 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 0 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 149 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 4 -Pp 1 -Pn 4 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 7.085711145 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 99 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 2 -Pp 1 -Pn 2 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+d -t 7.085711145 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl IFQ -Nw ARP -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 149 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 4 -Pp 1 -Pn 4 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+s -t 7.085711145 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl RTR -Nw --- -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 143 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 3 -Pp 1 -Pn 3 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
+d -t 7.085711145 -Hs 0 -Hd 1 -Ni 0 -Nx 0.00 -Ny 0.00 -Nz 0.00 -Ne -1.000000 -Nl IFQ -Nw ARP -Ma 0 -Md 0 -Ms 0 -Mt 800 -Is 0.255 -Id 1.255 -It DSR -Il 44 -If 0 -Ii 99 -Iv 254 -P dsr -Ph 2 -Pq 0 -Ps 2 -Pp 1 -Pn 2 -Pl 2 -Pe 1->0 -Pw 0 -Pm 0 -Pc 0 -Pb 0->0 
