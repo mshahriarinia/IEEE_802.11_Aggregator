@@ -75,10 +75,10 @@ $ns node-config -adhocRouting $val(rp)\
      -phyType $val(netif) \
      -channel  [new $val(chan)] \
      -topoInstance $topo \
-     -agentTrace ON \
+     -agentTrace OFF \
      -routerTrace ON\
      -macTrace ON \
-     -movementTrace ON
+     -movementTrace OFF
 
 
 
@@ -89,10 +89,10 @@ for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
 }
 
 #Phy/WirelessPhy set CPThresh_ 10.0
-Phy/WirelessPhy set CSThresh_ 2.78831e-9    ;#100m
- Phy/WirelessPhy set RXThresh_ 1.11532e-8    ;#50m
+#Phy/WirelessPhy set CSThresh_ 2.78831e-9    ;#100m
+# Phy/WirelessPhy set RXThresh_ 1.11532e-8    ;#50m
 # Phy/WirelessPhy set bandwidth_ 1Mb
-Phy/WirelessPhy set Pt_ 8.5872e-5; # 40 meters
+#Phy/WirelessPhy set Pt_ 8.5872e-5; # 40 meters
 #Phy/WirelessPhy set freq_ 2.4e+9
 #Phy/WirelessPhy set L_ 1.0
 #Antenna/OmniAntenna set X_ 0
@@ -101,7 +101,12 @@ Phy/WirelessPhy set Pt_ 8.5872e-5; # 40 meters
 #Antenna/OmniAntenna set Gt_ 1
 #Antenna/OmniAntenna set Gr_ 1
 
+
+
     set node(0) [$ns node]
+
+#[lindex [$node(0) array get netif_] 1] set Pt_ 0.5
+$node(0) radius 20 
 
 
 #SET COORDINATES
@@ -137,7 +142,7 @@ set null_(0) [new Agent/Null]
 #set baseIndex  [expr $num_row * $num_row / 2 - 1]
 $ns attach-agent $node(0) $null_(0)
 
-# CREATE THE ACTUAL FLOW
+# CREATE THE ACTUAL FLOW, connect flow generator and flow receiver
 for {set i 1} {$i < [expr $num_row*$num_row]} {incr i} {
      $ns connect $udp_($i) $null_(0)
 }
